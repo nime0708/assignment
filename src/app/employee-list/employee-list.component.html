@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-4">
+    <button class="btn btn-primary" [routerLink]="['/employees/add']">
+      Add Employee
+    </button>
+  </div>
+  <div class="col-12 mt-4">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        [(ngModel)]="search"
+        (input)="updateSearch()"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <table class="table table-striped">
+    <thead>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>City</th>
+      <th>Address 1</th>
+      <th>Address 2</th>
+      <th>Postal Code</th>
+      <th>Edit</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of filterEmployees">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.phone | phoneFormat}}</td>
+        <td>{{ employee.address.city }}</td>
+        <td>{{ employee.address.address_line1 }}</td>
+        <td>{{ employee.address.address_line2 }}</td>
+        <td>{{ employee.address.postal_code }}</td>
+        <td><a [routerLink]="['/employees/edit',employee.id]">Edit</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
